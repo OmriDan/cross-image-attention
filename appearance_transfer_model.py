@@ -135,7 +135,8 @@ class AppearanceTransferModel:
                     is_cross=is_cross,
                     contrast_strength=model_self.config.contrast_strength,
                 )
-
+                #if attn_weight.shape[3] == 1024:
+                #    create_maps(attn_weight)
                 # Update attention map for segmentation
                 if model_self.config.use_masked_adain and model_self.step == model_self.config.adain_range.start - 1:
                     model_self.segmentor.update_attention(attn_weight, is_cross)
