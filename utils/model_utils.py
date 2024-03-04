@@ -13,8 +13,8 @@ def get_stable_diffusion_model() -> CrossImageAttentionStableDiffusionPipeline:
     pipe.unet = FreeUUNet2DConditionModel.from_pretrained("runwayml/stable-diffusion-v1-5", subfolder="unet").to(device)
     pipe.scheduler = DDIMScheduler.from_config("runwayml/stable-diffusion-v1-5", subfolder="scheduler")
     # pipe.enable_model_cpu_offload() # For Model offloading
-    # pipe.enable_sequential_cpu_offload() # For CPU offloading
-    # pipe.enable_vae_slicing() # For Sliced  VAE
-    # pipe.enable_xformers_memory_efficient_attention() # For Sliced VAE (optional) OR by itself
+    pipe.enable_sequential_cpu_offload() # For CPU offloading
+    #pipe.enable_vae_slicing() # For Sliced  VAE
+    #pipe.enable_xformers_memory_efficient_attention() # For Sliced VAE (optional) OR by itself
     print("Done.")
     return pipe
