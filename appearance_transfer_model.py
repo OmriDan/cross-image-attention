@@ -10,7 +10,7 @@ from utils import attention_utils
 from utils.adain import masked_adain, adain
 from utils.model_utils import get_stable_diffusion_model
 from utils.segmentation import Segmentor
-
+from utils.create_attention_maps import create_maps
 
 class AppearanceTransferModel:
 
