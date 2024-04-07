@@ -14,12 +14,15 @@ from appearance_transfer_model import AppearanceTransferModel
 from config import RunConfig, Range
 from utils import latent_utils
 from utils.latent_utils import load_latents_or_invert_images
-
+from utils import background_utils
 
 @pyrallis.wrap()
 def main(cfg: RunConfig):
     run(cfg)
-
+    # cross_images = run(cfg)
+    # modification_prompt = "a sunset sky"
+    # modified_image = background_utils.modify_image(cross_images[0], modification_prompt)
+    # background_utils.display_images(cross_images[0], modified_image)
 
 def run(cfg: RunConfig) -> List[Image.Image]:
     pyrallis.dump(cfg, open(cfg.output_path / 'config.yaml', 'w'))
