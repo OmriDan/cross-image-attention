@@ -2,6 +2,7 @@ import torch
 from diffusers import AutoPipelineForText2Image, AutoPipelineForImage2Image
 from matplotlib import pyplot as plt
 
+
 def generate_initial_image(prompt, seed=12):
     text2image_pipeline = AutoPipelineForText2Image.from_pretrained(
         "runwayml/stable-diffusion-v1-5",
@@ -12,6 +13,7 @@ def generate_initial_image(prompt, seed=12):
     generator = torch.Generator(device="cuda").manual_seed(seed)
     image = text2image_pipeline(prompt, generator=generator, guidance_scale=4.5).images[0]
     return image
+
 
 def modify_image(initial_image, modification_prompt, seed=10):
     image2image_pipeline = AutoPipelineForImage2Image.from_pretrained(

@@ -3,7 +3,6 @@ import torch
 
 from constants import OUT_INDEX
 
-
 def should_mix_keys_and_values(model, hidden_states: torch.Tensor) -> bool:
     """ Verify whether we should perform the mixing in the current timestep. """
     is_in_32_timestep_range = (
@@ -14,6 +13,8 @@ def should_mix_keys_and_values(model, hidden_states: torch.Tensor) -> bool:
     )
     is_hidden_states_32_square = (hidden_states.shape[1] == 32 ** 2)
     is_hidden_states_64_square = (hidden_states.shape[1] == 64 ** 2)
+
+
     should_mix = (is_in_32_timestep_range and is_hidden_states_32_square) or \
                  (is_in_64_timestep_range and is_hidden_states_64_square)
     return should_mix

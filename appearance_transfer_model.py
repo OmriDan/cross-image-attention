@@ -150,12 +150,12 @@ class AppearanceTransferModel:
                         should_mix = True
                         if model_self.step % 5 == 0 and model_self.step < 40:
                             # Inject the structure's keys and values
-                            key[OUT_INDEX] = torch.cat((key[STRUCT_INDEX], key[STYLE_INDEX]), dim=-1)
-                            value[OUT_INDEX] = torch.cat((value[STRUCT_INDEX], value[STYLE_INDEX]), dim=-1)
+                            key[OUT_INDEX] = key[STRUCT_INDEX]
+                            value[OUT_INDEX] = value[STRUCT_INDEX]
                         else:
                             # Inject the appearance's keys and values
-                            key[OUT_INDEX] = torch.cat((key[STRUCT_INDEX], key[STYLE_INDEX]))
-                            value[OUT_INDEX] = torch.cat((key[STRUCT_INDEX], key[STYLE_INDEX]))
+                            key[OUT_INDEX] = key[STYLE_INDEX]
+                            value[OUT_INDEX] = value[STYLE_INDEX]
 
                 query = query.view(batch_size, -1, attn.heads, head_dim).transpose(1, 2)
                 #print(f'******** after view query size: {query.shape} *********')
